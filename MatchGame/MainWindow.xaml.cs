@@ -34,12 +34,17 @@ namespace MatchGame
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            tenthOfSecondsElapsed++;
+            tenthOfSecondsElapsed--;
             timeTextBlock.Text = (tenthOfSecondsElapsed / 10F).ToString("0.0s");
             if(matchesFound == 8)
             {
                 timer.Stop();
                 timeTextBlock.Text = timeTextBlock.Text + " - Play again?";
+            } else if (tenthOfSecondsElapsed == 0)
+            {
+                timeTextBlock.Text = "You LOSE!!!";
+                timer.Stop();
+
             }
         }
 
@@ -73,6 +78,8 @@ namespace MatchGame
             }
 
             
+
+            
             
         }
 
@@ -82,13 +89,17 @@ namespace MatchGame
             if(startGameFirstClick == true)
             {
                 timer.Start();
-                tenthOfSecondsElapsed = 0;
+                tenthOfSecondsElapsed = 100;
                 matchesFound = 0;
             }
-                
             
-            
+
+
+
         }
+
+
+        
 
 
         TextBlock lastTextBoxClicked;
