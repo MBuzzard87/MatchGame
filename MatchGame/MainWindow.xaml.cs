@@ -51,5 +51,34 @@ namespace MatchGame
             
             }
         }
+
+
+        TextBlock lastTextBoxClicked;
+        bool findingMatch = false;
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+
+            TextBlock tb = sender as TextBlock;
+            if(findingMatch == false)
+            {
+                tb.Visibility = Visibility.Hidden;
+                lastTextBoxClicked = tb;
+                findingMatch = true;
+           
+
+            }
+            else if (tb.Text == lastTextBoxClicked.Text)
+            {
+                tb.Visibility = Visibility.Hidden;  
+                findingMatch = false;
+            }
+            else
+            {
+                lastTextBoxClicked.Visibility = Visibility.Visible;
+                findingMatch= false;
+            }
+        }
     }
 }
