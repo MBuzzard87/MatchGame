@@ -71,17 +71,36 @@ namespace MatchGame
                 
             
             }
-            timer.Start();
-            tenthOfSecondsElapsed = 0;
-            matchesFound = 0;
+
+            
+            
+        }
+
+        private void timerStartGame()
+        {
+            startGameFirstClick = true;
+            if(startGameFirstClick == true)
+            {
+                timer.Start();
+                tenthOfSecondsElapsed = 0;
+                matchesFound = 0;
+            }
+                
+            
+            
         }
 
 
         TextBlock lastTextBoxClicked;
         bool findingMatch = false;
+        bool startGameFirstClick = false;
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if(startGameFirstClick == false)
+            {
+                timerStartGame();
+            }
             
 
             TextBlock tb = sender as TextBlock;
